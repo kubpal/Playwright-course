@@ -28,7 +28,7 @@ test.beforeAll( async () =>
        data: orderPayload,
        headers:{
             'Authorization': token,
-            'Conten-type': 'application/json'
+            'Content-Type': 'application/json'
        },  
     })
     const orderResponseJson = await orderResponse.json();
@@ -48,10 +48,12 @@ test.only("Browser Context PW test", async ({page})=>
     const table = await page.locator("table");
     await table.waitFor();
     const tableCount = await table.locator("tbody th").count();
+    // console.log(orderId);
+    // await page.pause();
     for(let i=0; i<tableCount; i++){
         const id = await table.locator("tbody th").nth(i).textContent();
         if(orderId.includes(id)){
-            await table.locator("button").nth((2*i)-2).click();
+            await table.locator("button").nth(2*i).click();
             break;
         }
     };
