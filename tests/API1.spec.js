@@ -36,7 +36,7 @@ test.beforeAll( async () =>
     orderId = orderResponseJson.orders[0];
     });
 
-test.only("Browser Context PW test", async ({page})=>
+test.only("place order by API", async ({page})=>
 {
     await page.addInitScript(value => {
         window.localStorage.setItem('token', value)
