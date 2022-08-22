@@ -16,11 +16,14 @@ test.beforeAll(async({browser})=>
     await context.storageState({path: 'state.json'});
     webContext = await browser.newContext({storageState:'state.json'});
 })
-test.only("Client App login", async ()=>
+
+
+test("Client App login", async ()=>
 {
     const email = "lana@del.rey";
     const page = await webContext.newPage();
     await page.goto("https://rahulshettyacademy.com/client");
+    await page.waitForLoadState("networkidle");
     const products = page.locator(".card-body");
     const productName = "zara coat 3";
     const titles = await page.locator(".card-body b").allTextContents();
@@ -70,8 +73,18 @@ test.only("Client App login", async ()=>
 
 
 
-    //await page.pause();
+
 });
 
+test("Print titles", async ()=>
+{
+    const page = await webContext.newPage();
+    await page.goto("https://rahulshettyacademy.com/client");
+    await page.waitForLoadState("networkidle");
+    const products = page.locator(".card-body");
+    const productName = "zara coat 3";
+    const titles = await page.locator(".card-body b").allTextContents();
+    console.log(titles);
+});
 
 
