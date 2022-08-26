@@ -25,18 +25,19 @@ test.only("place order by API", async ({page})=>
     await page.route("https://rahulshettyacademy.com/api/ecom/order/get-orders-for-customer/62b7f98ee26b7e1a10eedbae",
     async route=>
     {
-        const response = await page.request.fetch(route.request())
+        const response = await page.request.fetch(route.request());
         let body = fakePayLoad;
-        route.fulfill(
+        await route.fulfill(
             {
-                response,
-                body
-            }
-        )
-    }
-    )
+                // response,
+                // body,
+            });
+    });
     await page.pause();
     await page.locator("button[routerlink='/dashboard/myorders']").click();
+
+    console.log(await page.locator(".mt-4").textContent());
+    await page.pause();
 
 });
 
