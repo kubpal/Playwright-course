@@ -27,11 +27,7 @@ test.only("place order by API", async ({page})=>
     {
         const response = await page.request.fetch(route.request());
         let body = fakePayLoad;
-        await route.fulfill(
-            {
-                // response,
-                // body,
-            });
+        await route.fulfill({});
     });
     await page.pause();
     await page.locator("button[routerlink='/dashboard/myorders']").click();
